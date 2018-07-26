@@ -1,8 +1,10 @@
 package com.oocl.itaspringdatajpa.oneToN.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
+import java.time.ZonedDateTime;
 
 @Entity
 public class Employee{
@@ -11,6 +13,9 @@ public class Employee{
 	private int id;
 	private String name;
 	private int age;
+
+	@CreatedDate
+	private ZonedDateTime createDate = ZonedDateTime.now();
 	@JsonIgnore
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "company_id")
@@ -54,5 +59,13 @@ public class Employee{
 
 	public void setCompany(Company company) {
 		this.company = company;
+	}
+
+	public ZonedDateTime getCreateDate() {
+		return createDate;
+	}
+
+	public void setCreateDate(ZonedDateTime createDate) {
+		this.createDate = createDate;
 	}
 }
