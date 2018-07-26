@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class CompanyDTO{
-	private final int id;
+	private final Long id;
 	private final String name;
 	private final ZonedDateTime createDate;
 	private final List<EmployeeDTO> employees;
@@ -23,7 +23,7 @@ public class CompanyDTO{
 
 	}
 
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 

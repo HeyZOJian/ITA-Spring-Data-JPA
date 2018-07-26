@@ -4,9 +4,9 @@ import com.oocl.itaspringdatajpa.oneToN.entities.Employee;
 import org.springframework.context.annotation.Bean;
 
 public class EmployeeDTO{
-	private final int id;
+	private final Long id;
 	private final String name;
-	private final int companyId;
+	private final Long companyId;
 
 	public EmployeeDTO(Employee employee) {
 		this.id = employee.getId();
@@ -14,7 +14,7 @@ public class EmployeeDTO{
 		this.companyId = employee.getCompany().getId();
 	}
 
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
@@ -22,7 +22,7 @@ public class EmployeeDTO{
 		return name;
 	}
 
-	public int getCompanyId() {
+	public Long getCompanyId() {
 		return companyId;
 	}
 
