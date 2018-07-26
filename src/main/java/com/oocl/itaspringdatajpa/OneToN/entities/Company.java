@@ -1,4 +1,4 @@
-package com.oocl.itaspringdatajpa.oneToN.entities;
+package com.oocl.itaspringdatajpa.OneToN.entities;
 
 import org.springframework.data.annotation.CreatedDate;
 

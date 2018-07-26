@@ -1,5 +1,7 @@
 package com.oocl.itaspringdatajpa.OneToOne.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 /**
@@ -9,34 +11,29 @@ import javax.persistence.*;
 public class BookDetail {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private Long id;
 
-	private String autoName;
-
-	@OneToOne
+	private String authorName;
+	private int numberOfPages;
+	@JsonIgnore
+	@JoinColumn(name = "book_id")
+	@OneToOne(fetch = FetchType.LAZY,mappedBy = "bookDetail")
 	private Book book;
 
 	public BookDetail() {
 	}
 
-	public BookDetail(String auto_name) {
-		this.autoName = auto_name;
+	public BookDetail(String auto_name, int numberOfPages) {
+		this.authorName = auto_name;
+		this.numberOfPages = numberOfPages;
 	}
 
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
-	}
-
-	public String getAutoName() {
-		return autoName;
-	}
-
-	public void setAutoName(String autoName) {
-		this.autoName = autoName;
 	}
 
 	public Book getBook() {
@@ -45,5 +42,21 @@ public class BookDetail {
 
 	public void setBook(Book book) {
 		this.book = book;
+	}
+
+	public String getAuthorName() {
+		return authorName;
+	}
+
+	public void setAuthorName(String authorName) {
+		this.authorName = authorName;
+	}
+
+	public int getNumberOfPages() {
+		return numberOfPages;
+	}
+
+	public void setNumberOfPages(int numberOfPages) {
+		this.numberOfPages = numberOfPages;
 	}
 }

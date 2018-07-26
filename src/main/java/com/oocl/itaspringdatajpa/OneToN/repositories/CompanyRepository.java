@@ -1,6 +1,6 @@
-package com.oocl.itaspringdatajpa.oneToN.repositories;
+package com.oocl.itaspringdatajpa.OneToN.repositories;
 
-import com.oocl.itaspringdatajpa.oneToN.entities.Company;
+import com.oocl.itaspringdatajpa.OneToN.entities.Company;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

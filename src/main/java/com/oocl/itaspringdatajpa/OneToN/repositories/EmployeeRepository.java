@@ -1,7 +1,6 @@
-package com.oocl.itaspringdatajpa.oneToN.repositories;
+package com.oocl.itaspringdatajpa.OneToN.repositories;
 
-import com.oocl.itaspringdatajpa.oneToN.controllers.dto.EmployeeDTO;
-import com.oocl.itaspringdatajpa.oneToN.entities.Employee;
+import com.oocl.itaspringdatajpa.OneToN.entities.Employee;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

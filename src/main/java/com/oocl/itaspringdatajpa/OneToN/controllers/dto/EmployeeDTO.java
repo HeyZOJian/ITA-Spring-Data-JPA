@@ -1,7 +1,6 @@
-package com.oocl.itaspringdatajpa.oneToN.controllers.dto;
+package com.oocl.itaspringdatajpa.OneToN.controllers.dto;
 
-import com.oocl.itaspringdatajpa.oneToN.entities.Employee;
-import org.springframework.context.annotation.Bean;
+import com.oocl.itaspringdatajpa.OneToN.entities.Employee;
 
 public class EmployeeDTO{
 	private final Long id;

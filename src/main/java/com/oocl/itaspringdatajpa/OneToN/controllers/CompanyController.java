@@ -1,10 +1,10 @@
-package com.oocl.itaspringdatajpa.oneToN.controllers;
+package com.oocl.itaspringdatajpa.OneToN.controllers;
 
-import com.oocl.itaspringdatajpa.oneToN.controllers.dto.CompanyDTO;
-import com.oocl.itaspringdatajpa.oneToN.entities.Company;
-import com.oocl.itaspringdatajpa.oneToN.entities.Employee;
-import com.oocl.itaspringdatajpa.oneToN.repositories.CompanyRepository;
-import com.oocl.itaspringdatajpa.oneToN.repositories.EmployeeRepository;
+import com.oocl.itaspringdatajpa.OneToN.controllers.dto.CompanyDTO;
+import com.oocl.itaspringdatajpa.OneToN.entities.Company;
+import com.oocl.itaspringdatajpa.OneToN.entities.Employee;
+import com.oocl.itaspringdatajpa.OneToN.repositories.CompanyRepository;
+import com.oocl.itaspringdatajpa.OneToN.repositories.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;

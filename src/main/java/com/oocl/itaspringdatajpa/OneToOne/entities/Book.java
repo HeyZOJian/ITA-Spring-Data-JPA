@@ -9,9 +9,9 @@ import javax.persistence.*;
 public class Book {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private Long id;
 	private String name;
-	@OneToOne(fetch = FetchType.LAZY)
+	@OneToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
 	private BookDetail bookDetail;
 
 	public Book() {
@@ -21,11 +21,16 @@ public class Book {
 		this.name = name;
 	}
 
-	public int getId() {
+	public Book(String name, BookDetail bookDetail) {
+		this.name = name;
+		this.bookDetail = bookDetail;
+	}
+
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

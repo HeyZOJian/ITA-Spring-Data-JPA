@@ -1,7 +1,5 @@
-package com.oocl.itaspringdatajpa.oneToN.controllers.dto;
-import com.oocl.itaspringdatajpa.oneToN.controllers.dto.EmployeeDTO;
-import com.oocl.itaspringdatajpa.oneToN.entities.Company;
-import com.oocl.itaspringdatajpa.oneToN.entities.Employee;
+package com.oocl.itaspringdatajpa.OneToN.controllers.dto;
+import com.oocl.itaspringdatajpa.OneToN.entities.Company;
 
 import java.time.ZonedDateTime;
 import java.util.List;

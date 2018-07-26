@@ -2,21 +2,26 @@ package com.oocl.itaspringdatajpa.OneToOne.controllers.dto;
 
 import com.oocl.itaspringdatajpa.OneToOne.entities.Book;
 
+import java.util.Optional;
+
 /**
  * Created by Vito Zhuang on 7/26/2018.
  */
 public class BookDTO {
-	private int id;
+	private Long id;
 	private String name;
-	private int bookDetailId;
+	private BookDetailDTO bookDetail;
+
+	public BookDTO(Optional<Book> byId) {
+	}
 
 	public BookDTO(Book book) {
 		this.id = book.getId();
 		this.name = book.getName();
-		this.bookDetailId = book.getBookDetail().getId();
+		this.bookDetail = new BookDetailDTO(book.getBookDetail());
 	}
 
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
@@ -24,7 +29,7 @@ public class BookDTO {
 		return name;
 	}
 
-	public int getBookDetailId() {
-		return bookDetailId;
+	public BookDetailDTO getBookDetail() {
+		return bookDetail;
 	}
 }
