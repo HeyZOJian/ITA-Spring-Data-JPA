@@ -8,10 +8,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class CompanyDTO{
-	private int id;
-	private String name;
-	private ZonedDateTime createDate;
-	private List<EmployeeDTO> employees;
+	private final int id;
+	private final String name;
+	private final ZonedDateTime createDate;
+	private final List<EmployeeDTO> employees;
 
 	public CompanyDTO(Company company) {
 		this.id = company.getId();
@@ -27,31 +27,16 @@ public class CompanyDTO{
 		return id;
 	}
 
-	public void setId(int id) {
-		this.id = id;
-	}
-
 	public String getName() {
 		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
 	}
 
 	public ZonedDateTime getCreateDate() {
 		return createDate;
 	}
 
-	public void setCreateDate(ZonedDateTime createDate) {
-		this.createDate = createDate;
-	}
-
 	public List<EmployeeDTO> getEmployees() {
 		return employees;
 	}
 
-	public void setEmployees(List<EmployeeDTO> employees) {
-		this.employees = employees;
-	}
 }

@@ -23,6 +23,11 @@ public class CompanyController{
 		return companyRepository.findAll();
 	}
 
+	@GetMapping(path = "/{id}")
+	public Company findCompanyById(@PathVariable int id){
+		return companyRepository.findAllById(id);
+	}
+
 	@PostMapping(path = "")
 	public Company addCompany(@RequestBody Company company){
 		company.getEmployees().stream()

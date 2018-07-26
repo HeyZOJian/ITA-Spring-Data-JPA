@@ -12,7 +12,6 @@ public class Employee{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String name;
-	private int age;
 
 	@CreatedDate
 	private ZonedDateTime createDate = ZonedDateTime.now();
@@ -24,9 +23,8 @@ public class Employee{
 	public Employee() {
 	}
 
-	public Employee(String name, int age) {
+	public Employee(String name) {
 		this.name = name;
-		this.age = age;
 	}
 
 	public int getId() {
@@ -43,14 +41,6 @@ public class Employee{
 
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	public int getAge() {
-		return age;
-	}
-
-	public void setAge(int age) {
-		this.age = age;
 	}
 
 	public Company getCompany() {
