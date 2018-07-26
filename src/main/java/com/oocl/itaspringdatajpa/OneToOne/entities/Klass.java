@@ -11,7 +11,7 @@ public class Klass {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String name;
-	@OneToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+	@OneToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL, mappedBy = "klass")
 	private Leader leader;
 
 	public Klass() {

@@ -16,8 +16,8 @@ public class Leader {
 	private String name;
 	private int age;
 	@JsonIgnore
-	@JoinColumn(name = "book_id")
-	@OneToOne(fetch = FetchType.LAZY,mappedBy = "leader")
+	@JoinColumn(name = "klass_id")
+	@OneToOne(fetch = FetchType.LAZY)
 	private Klass klass;
 
 	public Leader() {
