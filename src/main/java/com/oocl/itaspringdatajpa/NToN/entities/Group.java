@@ -15,7 +15,7 @@ public class Group {
 	private Long id;
 	private String name;
 	@ManyToMany(cascade = CascadeType.ALL)
-	@JoinTable(name = "group_user",
+	@JoinTable(name = "oocl_group_user",
 	joinColumns = @JoinColumn(name = "group_id", referencedColumnName = "id"),
 	inverseJoinColumns = @JoinColumn(name = "user_id",referencedColumnName = "id"))
 	private List<User> users = new LinkedList<>();
