@@ -45,20 +45,20 @@ public class CompanyControllerTests {
 	@MockBean
 	private EmployeeRepository employeeRepository;
 
-//
-//	@Test
-//	public void addCompanies()throws Exception{
-//		Company company = new Company();
-//		company.setName("oocl");
-//
-//		given(companyRepository.save(any(Company.class))).willReturn(company);
-//		mockMvc.perform(post("/api/v1/companies")
-//				.contentType(MediaType.APPLICATION_JSON_UTF8)
-//		.content(json.toString()))
-//				.andExpect(status().isOk())
-//				.andExpect(jsonPath("$.content.id",))
-//		.andDo(print());
-//	}
+
+	@Test
+	public void addCompanies()throws Exception{
+		Company company = new Company();
+		company.setName("oocl");
+		ObjectMapper mapper = new ObjectMapper();
+		given(companyRepository.save(any(Company.class))).willReturn(company);
+		mockMvc.perform(post("/api/v1/companies")
+				.contentType(MediaType.APPLICATION_JSON_UTF8)
+		.content(mapper.writeValueAsString(company)))
+				.andExpect(status().isOk())
+//				.andExpect(jsonPath("$.content.id",1))
+		.andDo(print());
+	}
 
 
 	@Test
