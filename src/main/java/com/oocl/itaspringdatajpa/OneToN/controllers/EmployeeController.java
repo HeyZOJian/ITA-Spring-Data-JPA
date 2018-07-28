@@ -1,6 +1,8 @@
 package com.oocl.itaspringdatajpa.OneToN.controllers;
 
 import com.oocl.itaspringdatajpa.OneToN.entities.Employee;
+import com.oocl.itaspringdatajpa.OneToN.service.EmployeeService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,6 +12,9 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/employees")
 @RestController
 public class EmployeeController {
+
+	@Autowired
+	EmployeeService employeeService;
 
 	@GetMapping(path = "")
 	public ResponseEntity findAll(){

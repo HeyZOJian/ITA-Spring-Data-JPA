@@ -12,6 +12,7 @@ public class Employee{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String name;
+	private String Gender;
 
 	@CreatedDate
 	private ZonedDateTime createDate = ZonedDateTime.now();
@@ -25,6 +26,11 @@ public class Employee{
 
 	public Employee(String name) {
 		this.name = name;
+	}
+
+	public Employee(String name, String gender) {
+		this.name = name;
+		Gender = gender;
 	}
 
 	public Long getId() {
@@ -57,5 +63,13 @@ public class Employee{
 
 	public void setCreateDate(ZonedDateTime createDate) {
 		this.createDate = createDate;
+	}
+
+	public String getGender() {
+		return Gender;
+	}
+
+	public void setGender(String gender) {
+		Gender = gender;
 	}
 }
