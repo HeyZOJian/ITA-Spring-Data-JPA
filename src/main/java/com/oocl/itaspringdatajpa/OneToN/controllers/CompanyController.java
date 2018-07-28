@@ -3,75 +3,84 @@ package com.oocl.itaspringdatajpa.OneToN.controllers;
 import com.oocl.itaspringdatajpa.OneToN.controllers.dto.CompanyDTO;
 import com.oocl.itaspringdatajpa.OneToN.entities.Company;
 import com.oocl.itaspringdatajpa.OneToN.entities.Employee;
-import com.oocl.itaspringdatajpa.OneToN.repositories.CompanyRepository;
-import com.oocl.itaspringdatajpa.OneToN.repositories.EmployeeRepository;
+import com.oocl.itaspringdatajpa.OneToN.service.CompanyService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.transaction.Transactional;
-import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/v1/companies")
 public class CompanyController{
 	@Autowired
-	CompanyRepository companyRepository;
+	CompanyService companyService;
 
-	@Autowired
-	EmployeeRepository employeeRepository;
 	@Transactional
 	@GetMapping(path = "")
-	public List<CompanyDTO> findAllCompanies(){
-		return companyRepository.findAll().stream()
-				.map(company -> new CompanyDTO(company))
-				.collect(Collectors.toList());
+	public ResponseEntity findAllCompanies(){
+		return ResponseEntity.ok(companyService.findAll().stream()
+				.map(CompanyDTO::new)
+				.collect(Collectors.toList()));
 	}
 
 	@Transactional
 	@GetMapping(path = "/{id}")
-	public CompanyDTO findCompanyById(@PathVariable Long id){
-		Company company = companyRepository.findById(id).get();
-		return new CompanyDTO(company);
+	public ResponseEntity findCompanyById(@PathVariable Long id){
+		Company company = companyService.findById(id);
+		if(company!=null){
+			return ResponseEntity.ok(new CompanyDTO(company));
+		}
+		else{
+			return new ResponseEntity<>("NOT_FOUND",HttpStatus.NOT_FOUND);
+		}
+	}
+
+	@GetMapping(path = "/page/{page}/pageSize/{size}")
+	public ResponseEntity findAllByPaging(@PathVariable int page,@PathVariable int size){
+		return ResponseEntity.ok(companyService.findAllByPaging(new PageRequest(page-1,size)));
 	}
 
 	@Transactional
 	@PostMapping(path = "")
-	public CompanyDTO addCompany(@RequestBody Company company){
-		company.getEmployees().stream()
-				.forEach(employee -> employee.setCompany(company));
-		return new CompanyDTO(companyRepository.save(company));
+	public ResponseEntity<CompanyDTO> addCompany(@RequestBody Company company){
+		return ResponseEntity.ok(new CompanyDTO(companyService.addCompany(company)));
 	}
 
 	@Transactional
 	@PutMapping(path = "/{id}/employees")
-	public ResponseEntity addEmployeeIntoCompany(@PathVariable Long id, @RequestBody Employee employee){
-		Company company = companyRepository.findAllById(id);
-		employee.setCompany(company);
-		employeeRepository.save(employee);
-		companyRepository.save(company);
-		return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+	public ResponseEntity addEmployeeIntoCompany(@PathVariable Long id, @RequestBody Employee employee) {
+		if (companyService.addEmployeeIntoCompany(id, employee)) {
+			return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+		}
+		else{
+			return new ResponseEntity<>("NOT_FOUND",HttpStatus.NOT_FOUND);
+		}
 	}
 
 	@Transactional
 	@PutMapping(path = "/{id}")
-	public ResponseEntity updateCompany(@PathVariable Long id, @RequestBody Company company){
-		Company company1 = companyRepository.findById(id).get();
-		company1.setName(company.getName()!=null?company.getName():company1.getName());
-		companyRepository.save(company1);
-		return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+	public ResponseEntity updateCompany(@PathVariable Long id, @RequestBody Company company) {
+		if (companyService.updateCompany(id, company)) {
+			return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+		}
+		else{
+			return new ResponseEntity<>("NOT_FOUND",HttpStatus.NOT_FOUND);
+		}
 	}
 
 
 	@Transactional
 	@DeleteMapping(path = "/{id}",produces = MediaType.APPLICATION_JSON_VALUE)
-	public Company deleteCompany(@PathVariable Long id){
-		Company company = companyRepository.findById(id).get();
-		companyRepository.delete(company);
-		return company;
-
+	public ResponseEntity deleteCompany(@PathVariable Long id){
+		if(companyService.deleteCompanyAllEmployees(id)){
+			return ResponseEntity.status(HttpStatus.OK).build();
+		}else{
+			return new ResponseEntity<>("NOT_FOUND",HttpStatus.NOT_FOUND);
+		}
 	}
 }
