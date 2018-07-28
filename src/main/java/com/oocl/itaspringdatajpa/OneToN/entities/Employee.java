@@ -12,7 +12,7 @@ public class Employee{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String name;
-	private String Gender;
+	private String gender;
 
 	@CreatedDate
 	private ZonedDateTime createDate = ZonedDateTime.now();
@@ -30,7 +30,7 @@ public class Employee{
 
 	public Employee(String name, String gender) {
 		this.name = name;
-		Gender = gender;
+		this.gender = gender;
 	}
 
 	public Long getId() {
@@ -66,10 +66,10 @@ public class Employee{
 	}
 
 	public String getGender() {
-		return Gender;
+		return gender;
 	}
 
 	public void setGender(String gender) {
-		Gender = gender;
+		this.gender = gender;
 	}
 }

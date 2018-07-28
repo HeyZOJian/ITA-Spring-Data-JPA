@@ -7,4 +7,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface EmployeeRepository extends JpaRepository<Employee,Long>{
 	public Employee findByGender(String gender);
+	int deleteEmployeeById(Long id);
 }
