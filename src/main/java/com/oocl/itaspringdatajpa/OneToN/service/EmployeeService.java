@@ -24,7 +24,7 @@ public class EmployeeService {
 
 	public List<EmployeeDTO> findAll(){
 		return employeeRepository.findAll().stream()
-				.map(employee -> new EmployeeDTO(employee))
+				.map(EmployeeDTO::new)
 				.collect(Collectors.toList());
 	}
 
