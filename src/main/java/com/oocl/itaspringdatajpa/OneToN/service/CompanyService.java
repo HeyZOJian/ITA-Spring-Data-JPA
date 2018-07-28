@@ -1,6 +1,7 @@
 package com.oocl.itaspringdatajpa.OneToN.service;
 
 import com.oocl.itaspringdatajpa.OneToN.controllers.dto.CompanyDTO;
+import com.oocl.itaspringdatajpa.OneToN.controllers.dto.EmployeeDTO;
 import com.oocl.itaspringdatajpa.OneToN.entities.Company;
 import com.oocl.itaspringdatajpa.OneToN.entities.Employee;
 import com.oocl.itaspringdatajpa.OneToN.repositories.CompanyRepository;
@@ -46,8 +47,6 @@ public class CompanyService {
 				.map(company -> new CompanyDTO(company))
 				.collect(Collectors.toList());
 	}
-
-	public Page<Company> findAllByPaging(){return null;}
 
 	public Company addCompany(Company company){
 		company.getEmployees().stream()
