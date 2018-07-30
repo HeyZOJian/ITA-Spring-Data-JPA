@@ -44,7 +44,7 @@ public class CompanyService {
 
 	public List<CompanyDTO> findAllByPaging(PageRequest pageRequest){
 		return companyRepository.findAll(pageRequest).stream()
-				.map(company -> new CompanyDTO(company))
+				.map(CompanyDTO::new)
 				.collect(Collectors.toList());
 	}
 
